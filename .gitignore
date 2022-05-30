@@ -1,1 +1,5 @@
 */node_modules
+server/.env
+server/dist
+.gitignore
+server/package-lock.json

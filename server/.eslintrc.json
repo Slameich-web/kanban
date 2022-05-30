@@ -5,11 +5,15 @@
         "es2021": true
     },
     "extends": [
-        "eslint:recommended"
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "parserOptions": {
         "ecmaVersion": "latest"
     },
+    "requireConfigFile": false,
+    "root": true,
+    "parser": "@babel/eslint-parser",
     "plugins": [
         "@typescript-eslint"
     ],
