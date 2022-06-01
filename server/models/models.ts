@@ -1,14 +1,46 @@
 import {DataTypes}  from 'sequelize';
 import {sequelize} from '../db';
+import * as Sequelize from 'sequelize'
 
-const User = sequelize.define('user', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+export interface UserAddModel {
+    id: number;
+    email: string;
+    password: string;
+    role: string;
+    phone: string;
+    description: string;
+    username: string;
+};
+export interface UserModel extends Sequelize.Model<UserModel, UserAddModel> {
+    id: number;
+    email: string;
+    password: string;
+    role: string;
+    phone: string;
+    description: string;
+    username: string;
+    createdAt: string;
+    updatedAt: string;
+};
+
+export interface UserViewModel {
+    id: number;
+    email: string;
+    password: string;
+    role: string;
+    phone: string;
+    description: string;
+    username: string;
+}
+
+const User = sequelize.define<UserModel, UserAddModel>('user', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
     email: {type: DataTypes.STRING, unique: true},
     password: {type: DataTypes.STRING},
     role: {type: DataTypes.STRING, defaultValue: "USER"},
-    phone: {type: DataTypes.STRING},
-    description: {type: DataTypes.STRING},
-    username: {type: DataTypes.STRING},
+    phone: {type: DataTypes.STRING, defaultValue: ""},
+    description: {type: DataTypes.STRING, defaultValue: ""},
+    username: {type: DataTypes.STRING, defaultValue: ""},
 })
 
 const TaskList = sequelize.define('task_list', {
