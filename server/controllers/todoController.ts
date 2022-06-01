@@ -1,6 +1,5 @@
 import Models from '../models/models'
-import {Request, Response, NextFunction} from 'express'
-import { nextTick } from 'process'
+import {Request, Response} from 'express'
 
 class todoController {
     async create(req: Request, res: Response) {
@@ -14,8 +13,22 @@ class todoController {
         
     }
     async getAll(req: Request, res: Response){
-        const tasks = await Models.Todo.findAll()
-        return res.json(tasks)
+        let {limit, page} = req.query;
+        page = page || '1';
+        limit = limit || '10';
+        let offset = Number(page) * Number(limit) - Number(limit);
+        const todos = await Models.Todo.findAndCountAll({limit: Number(limit), offset, subQuery: false});
+        return res.json(todos);
+    }
+    async getOne(req: Request, res: Response){
+        const {id} = req.params;
+        const todo = await Models.Todo.findOne(
+            {
+                where: {id},
+                include: [{model: Models.TaskListTodos, as: 'task_list_todos'}]
+            }
+        )
+        return res.json(todo);
     }
 }
 export default new todoController();

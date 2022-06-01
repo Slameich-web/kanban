@@ -6,8 +6,8 @@
   "main": "dist/index",
   "typings": "dist/index",
   "scripts": {
-    "dev": "nodemon index.js",
-    "devts": "ts-node-dev index.ts"
+    "watch": "tsc -w",
+    "dev": "nodemon .\\dist\\index.js"
   },
   "author": "",
   "license": "ISC",
