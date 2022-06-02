@@ -1,39 +1,9 @@
 import {DataTypes}  from 'sequelize';
 import {sequelize} from '../db';
 import * as Sequelize from 'sequelize'
+import { UserViewModel, UserModel, TaskListModel, TaskListViewModel, TaskListTodosModel, TaskListTodosViewModel, TodoModel, TodoModelView, RatingModel, RatingModelView } from './modelsInterfaces';
 
-export interface UserAddModel {
-    id: number;
-    email: string;
-    password: string;
-    role: string;
-    phone: string;
-    description: string;
-    username: string;
-};
-export interface UserModel extends Sequelize.Model<UserModel, UserAddModel> {
-    id: number;
-    email: string;
-    password: string;
-    role: string;
-    phone: string;
-    description: string;
-    username: string;
-    createdAt: string;
-    updatedAt: string;
-};
-
-export interface UserViewModel {
-    id: number;
-    email: string;
-    password: string;
-    role: string;
-    phone: string;
-    description: string;
-    username: string;
-}
-
-const User = sequelize.define<UserModel, UserAddModel>('user', {
+const User = sequelize.define<UserModel, UserViewModel>('user', {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
     email: {type: DataTypes.STRING, unique: true},
     password: {type: DataTypes.STRING},
@@ -43,22 +13,22 @@ const User = sequelize.define<UserModel, UserAddModel>('user', {
     username: {type: DataTypes.STRING, defaultValue: ""},
 })
 
-const TaskList = sequelize.define('task_list', {
+const TaskList = sequelize.define<TaskListModel, TaskListViewModel>('task_list', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
 
-const TaskListTodos = sequelize.define('task_list_todos', {
+const TaskListTodos = sequelize.define<TaskListTodosModel, TaskListTodosViewModel>('task_list_todos', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
 
-const Todo = sequelize.define('todo', {
+const Todo = sequelize.define<TodoModel, TodoModelView>('todo', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     title: {type: DataTypes.STRING, unique: true, allowNull: false},
     description: {type: DataTypes.STRING},
     rating: {type: DataTypes.STRING}
 })
 
-const Rating = sequelize.define('rating', {
+const Rating = sequelize.define<RatingModel, RatingModelView>('rating', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     rate: {type: DataTypes.INTEGER, allowNull: false},
 })
