@@ -1,10 +1,11 @@
 import Models from '../models/models'
 import {Request, Response} from 'express'
+import { TodoModelView } from '../models/modelsInterfaces'
 
 class todoController {
     async create(req: Request, res: Response) {
         try{
-            const {id, title, description, rating} = req.body
+            const {id, title, description, rating}: TodoModelView = req.body
             const todo = await Models.Todo.create({id, title, description, rating})
             return res.json(todo)
         } catch (error) {

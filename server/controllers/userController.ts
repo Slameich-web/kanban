@@ -40,15 +40,8 @@ class userController {
         const token = generateJWT(user.id, user.email, user.role);
         return res.json({token});
     }
-    async create(req: Request, res: Response) {
-        
-    }
-    async check(req: any, res: any, next: any) {
-        const { id } = req.query;
-        if (!id) {
-            return next(ApiError.badRequest('На найден ID'));
-        }
-        res.json(id);
+    async check(req: Request, res: Response) {
+        res.json({message: "ALL RIGHT"})
     }
 
 }

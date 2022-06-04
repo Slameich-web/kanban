@@ -14,7 +14,7 @@ const User = sequelize.define<UserModel, UserViewModel>('user', {
 })
 
 const TaskList = sequelize.define<TaskListModel, TaskListViewModel>('task_list', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
 })
 
 const TaskListTodos = sequelize.define<TaskListTodosModel, TaskListTodosViewModel>('task_list_todos', {

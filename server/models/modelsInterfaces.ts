@@ -22,15 +22,20 @@ export interface UserViewModel {
     username: string;
 }
 
-export interface TaskListViewModel {
-    id: number;
-}
-export interface TaskListModel extends Sequelize.Model<TaskListModel, TaskListViewModel> {
+
+export interface TaskListModel extends Sequelize.Model<TaskListModel, TaskListAddModel> {
     id: number;
     createdAt: string;
     updatedAt: string;
     userId: number;
 }
+export interface TaskListViewModel {
+    id: number;
+}
+export interface TaskListAddModel {
+    userId: number;
+}
+
 export interface TaskListTodosModel extends Sequelize.Model<TaskListTodosModel, TaskListTodosViewModel> {
     id: number;
     todoId: number;
@@ -41,7 +46,7 @@ export interface TaskListTodosModel extends Sequelize.Model<TaskListTodosModel, 
 export interface TaskListTodosViewModel {
     id: number;
 }
-export interface TodoModel extends Sequelize.Model<TaskListTodosModel, TaskListTodosViewModel> {
+export interface TodoModel extends Sequelize.Model<TodoModel, TodoModelView> {
     id: number;
     title: string;
     description: string;
@@ -56,7 +61,7 @@ export interface TodoModelView {
     rating: string;
 }
 
-export interface RatingModel extends Sequelize.Model<RatingModel, TaskListTodosViewModel>{
+export interface RatingModel extends Sequelize.Model<RatingModel, RatingModelView>{
     id: number;
     rate: number;
     createdAt: string;
