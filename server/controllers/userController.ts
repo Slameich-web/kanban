@@ -1,9 +1,8 @@
-import ApiError from "../error/ApiError";
 import {Request, Response} from 'express';
 import bcrypt from 'bcrypt';
 import Jwt from 'jsonwebtoken';
 import Models from '../models/models';
-import { IUserRegistration } from './controllersInterfaces'
+import { IUserRegistration } from './controllersInterfaces';
 
 const generateJWT = (id: number, email: string, role: string) => Jwt.sign(
     {id, email, role},
@@ -41,7 +40,19 @@ class userController {
         return res.json({token});
     }
     async check(req: Request, res: Response) {
-        res.json({message: "ALL RIGHT"})
+        try{
+            if(req.query.id && req.query.email && req.query.role){
+                const ROLE = String(req.query.role);
+                const EMAIL = String(req.query.email);
+                const ID = Number(req.query.id);
+                const token = generateJWT(ID, EMAIL, ROLE);
+                return res.json({token});
+            }
+    
+        } catch(e){
+            return res.status(404).json({ message: "ERROR" })
+        }
+        
     }
 
 }

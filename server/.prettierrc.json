@@ -1,8 +1,8 @@
 {
+    "semi": true,
+    "trailingComma": "all",
     "singleQuote": true,
-    "arrowParens": "always",
-    "max-len": ["error", 140, 2],
+    "printWidth": 80,
     "tabWidth": 2,
-    "useTabs": true,
-    "semi": true
+    "arrowParens": "avoid"
 }

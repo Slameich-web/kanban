@@ -1,6 +1,6 @@
-import Models from '../models/models'
-import {Request, Response} from 'express'
-import { TodoModelView } from '../models/modelsInterfaces'
+import Models from '../models/models';
+import {Request, Response} from 'express';
+import { TodoModelView } from '../models/modelsInterfaces';
 
 class todoController {
     async create(req: Request, res: Response) {

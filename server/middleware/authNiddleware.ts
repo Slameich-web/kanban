@@ -10,9 +10,11 @@ export default function (req: Request, res: Response, next: NextFunction) {
         if(!token){
             return res.status(401).json({ message: "Login error1" })
         }
-        const decoded = Jwt.verify(token, 'secretkey')
-        req.body.email = decoded;
-        next()
+        const decoded = Jwt.verify(token, '');
+        console.log('///////////');
+        return res.send({
+            user: decoded
+        })
     } catch (e) {
         return res.status(401).json({ message: "Login error2" })
     }

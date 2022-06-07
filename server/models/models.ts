@@ -1,6 +1,5 @@
 import {DataTypes}  from 'sequelize';
 import {sequelize} from '../db';
-import * as Sequelize from 'sequelize'
 import { UserViewModel, UserModel, TaskListModel, TaskListViewModel, TaskListTodosModel, TaskListTodosViewModel, TodoModel, TodoModelView, RatingModel, RatingModelView } from './modelsInterfaces';
 
 const User = sequelize.define<UserModel, UserViewModel>('user', {
@@ -10,7 +9,7 @@ const User = sequelize.define<UserModel, UserViewModel>('user', {
     role: {type: DataTypes.STRING, defaultValue: "USER"},
     phone: {type: DataTypes.STRING, defaultValue: ""},
     description: {type: DataTypes.STRING, defaultValue: ""},
-    username: {type: DataTypes.STRING, defaultValue: ""},
+    username: {type: DataTypes.STRING, defaultValue: ""}
 })
 
 const TaskList = sequelize.define<TaskListModel, TaskListViewModel>('task_list', {

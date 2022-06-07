@@ -1,10 +1,8 @@
 import {Router} from 'express';
-const router = Router();
-
 import userController from '../controllers/userController';
-//@ts-ignore
-import authNiddleware from '../middleware/authNiddleware'
+import authNiddleware from '../middleware/authNiddleware';
 
+const router = Router();
 router.post('/registration', userController.registration);
 router.post('/login', userController.login);
 router.get('/auth', authNiddleware, userController.check);
